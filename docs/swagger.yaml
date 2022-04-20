@@ -1,0 +1,154 @@
+definitions:
+  dto.CreatePostRequest:
+    properties:
+      content:
+        type: string
+      title:
+        type: string
+    type: object
+  dto.CreatePostResponse:
+    properties:
+      content:
+        type: string
+      id:
+        type: integer
+      title:
+        type: string
+    type: object
+  dto.DeletePostRequest:
+    properties:
+      id:
+        type: integer
+    type: object
+  dto.FindPostByIdResponse:
+    properties:
+      content:
+        type: string
+      id:
+        type: integer
+      title:
+        type: string
+    type: object
+  dto.FindPostResponse:
+    properties:
+      content:
+        type: string
+      id:
+        type: integer
+      title:
+        type: string
+    type: object
+  dto.UpdatePostRequest:
+    properties:
+      content:
+        type: string
+      title:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /posts:
+    get:
+      consumes:
+      - application/json
+      description: Put all mandatory parameter
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.FindPostResponse'
+      summary: Get All Posts
+      tags:
+      - posts-controller
+    post:
+      consumes:
+      - application/json
+      description: Put all mandatory parameter
+      parameters:
+      - description: CreatePostRequest
+        in: body
+        name: CreatePostRequest
+        required: true
+        schema:
+          $ref: '#/definitions/dto.CreatePostRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.CreatePostResponse'
+      summary: Create a new post
+      tags:
+      - posts-controller
+  /posts/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Put all mandatory parameter
+      parameters:
+      - description: post id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.DeletePostRequest'
+      summary: Delete existing post
+      tags:
+      - posts-controller
+    get:
+      consumes:
+      - application/json
+      description: Put all mandatory parameter
+      parameters:
+      - description: post id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.FindPostByIdResponse'
+      summary: Get post by id
+      tags:
+      - posts-controller
+    patch:
+      consumes:
+      - application/json
+      description: Put all mandatory parameter
+      parameters:
+      - description: UpdatePostRequest
+        in: body
+        name: UpdatePostRequest
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UpdatePostRequest'
+      - description: post id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.UpdatePostRequest'
+      summary: Update existing post
+      tags:
+      - posts-controller
+swagger: "2.0"
